@@ -63,7 +63,9 @@ if (Meteor.isClient) {
                 groupname = Session.get("who");
                 return GroupsTasks.find({
                     groupname: groupname,
-                    count: {$gt: howmany - 20}
+                    count: {
+                        $gt: howmany - 20
+                    }
                 }, {
                     sort: {
                         createdAt: 1
@@ -329,18 +331,18 @@ if (Meteor.isClient) {
 
 }
 
-    // Template.expressions.helpers({
-         
-    // });
+// Template.expressions.helpers({
 
-    //  Template.expressions.events({
-    //     "click #expression": function() {
-    //         $(".Allexpression").show();
-    //     },
-    //     "click .whichImage": function(event) {
-    //          var information = $("#information").value, ;
-    //     }
-    //  });
+// });
+
+//  Template.expressions.events({
+//     "click #expression": function() {
+//         $(".Allexpression").show();
+//     },
+//     "click .whichImage": function(event) {
+//          var information = $("#information").value, ;
+//     }
+//  });
 Meteor.methods({
     addMessageInGroup: function(text, groupname, count) {
         if (!Meteor.userId()) {
