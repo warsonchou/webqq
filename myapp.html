@@ -1,0 +1,156 @@
+<head>
+    <title>Todo List</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="jquery.emoji.js" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji();
+        });
+      });
+    </script>
+</head>
+
+<body>
+    <div id="back" style="background: url({{background}})">
+        <div class="allArear" id="allArear">
+            <div class="container">
+                <header>
+                    <button class="close">close</button>
+                    <h1>Chat With
+                        <span class="fellow">{{who}}</span>
+                        <span class="Chathistory">查看聊天记录</span>
+                        <span class="cut">收起</span>
+                    </h1>
+                </header>
+                {{#if currentUser}}
+                <div class="chatForm">
+                    {{#each tasks}} {{> task}} {{/each}}
+                </div>
+                <form class="new-task">
+                    <div>
+                        <input type="text" name="text" placeholder="Type something" id="information">
+                        <input type="submit" name="submit" value="send" id="send">
+                        <button type="button" id="expression">expression</button>
+                        <!-- <div class="Allexpression">
+                            {{#each expressions}} {{> expression}} {{/each}}
+                        </div> -->
+                    </div>
+                </form>
+
+                {{/if}}
+            </div>
+            <button class="changeBackground" id="changeBackground">更改背景</button>
+            <div class="somethingForTheUser">
+                <input type="search" placeholder="search your friends here">
+                <br>{{> addFreinds}}
+            </div>
+        </div>
+        <!-- ==================================================== -->
+        <div class="relative" id="drag">
+            <div id="at-plus-container">
+                <div class="pp">
+                    <img src="assets/images/atplus_white.png">
+                </div>
+                <div id="bottom-positioner">
+                    <div id="button">
+                        <div id="info-bar">
+                            <div style="display:block" class="info">
+                                <ul>
+                                    <li title="2人参与讨论" class="page user">
+                                        <img src="assets/images/people.png">
+                                        <span>14</span>
+                                    </li>
+                                    <li title="3条评论" class="page comment">
+                                        <img src="assets/images/comment.png">
+                                        <span>20</span>
+                                    </li>
+                                    <li title="我有6条评论" class="mine posted">
+                                        <img src="assets/images/post.png">
+                                        <span>3</span>
+                                    </li>
+                                    <li title="被赞6次" class="mine like">
+                                        <img src="assets/images/like.png">
+                                        <span>4</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="control-ring-container">
+                            <ul id="control-ring">
+                                <li title="历史记录收起" class="mask button">
+                                    <img src="assets/images/mask.png">
+                                </li>
+                                <li title="历史记录" class="history button">
+                                    <img src="assets/images/history.png">
+                                </li>
+                                <li title="消息" class="message button">
+                                    <img src="assets/images/message.png">
+                                    <span class="unread">
+                                        <span>2</span>
+                                    </span>
+                                </li>
+                                <li title="设置" class="setting button">
+                                    <img src="assets/images/setting.png">
+                                </li>
+                                <li title="创建群" class="sign button">
+                                    <img src="assets/images/signin.png">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="apb">
+                            <div class="icon">
+                                <img src="assets/images/atplus_green.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ===================================================== -->
+</body>
+
+<!-- <template name="expressions">
+<pre><img src="images/{{expresion}}" class="whichImage"></pre>
+</template> -->
+<template name="task">
+    <pre><span class="text"><strong>{{username}}:</strong><pre>     {{text}}</pre></span></pre>
+</template>
+
+<template name="addFreinds">
+    <header>
+        <h2>Contacts</h2>
+        {{> loginButtons}}
+        <button class="addgroup">create group</button>
+        <form class="groupName">
+            <input type="text" name="groupName" class="groupName" placeholder="groupName">
+        </form>
+        <div class="detail">
+            <span id="freinds">
+                <span class="withfreind">Freinds</span>
+                <button class="freindsAdd">+</button>
+            </span>
+            <span id="groups">
+                <span class="ingroup">Groups</span>
+                <button class="GroupAdd">+</button>
+                <br>
+                <br>
+            </span>
+            <form class="none1">
+                <input type="text" name="freinds" class="none">
+            </form>
+            <br>
+            <br>
+            <hr>
+            <div class="freindBar">
+                {{#if withfreind}} {{#each Allfreinds}}
+                <pre><span class="who" name="who">{{freinds}}</span><button class="freindDelete">&times;</button></pre>
+                <hr>{{/each}} {{/if}} {{#if ingroup}} {{#each Allgroups}}
+                <pre><span class="who" name="who">{{groupname}}</span>{{#if userId}}<button class="freindDelete">&times;</button>{{/if}}</pre>
+                <hr>{{/each}} {{/if}}
+            </div>
+        </div>
+    </header>
+
+</template>
